@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
-
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import Home from "./Components/Home";
+import Planet from "./Components/Planet";
+import People from "./Components/People";
+import Error from "./Components/Error";
+    
 function App() {
-  return (
+
+  return ( 
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        {/* Home is always there and doesn't switch */}
+        <Home/>
+        <Switch>
+          {/* instantiates the components when history navigation is changed */}
+          <Route path="/people" component={People}/>
+          <Route path="/planets" component={Planet}/>
+          <Route path="/error" component={Error}/>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
-
+    
 export default App;
